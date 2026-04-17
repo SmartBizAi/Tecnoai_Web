@@ -608,13 +608,13 @@ const en = {
     'docs.rxroutes.s4.step2': 'Drivers can attach proof of delivery (photo or signature).',
     'docs.rxroutes.s4.step3': 'All records are logged with a timestamp.',
     'docs.rxroutes.s5.title': '5. Roles & Permissions',
-    'docs.rxroutes.s5.admin': 'Admin — Full access: routes, drivers, reports, billing.',
+    'docs.rxroutes.s5.admin': 'Admin — Manages routes, drivers, delivery records, and team settings.',
     'docs.rxroutes.s5.dispatcher': 'Dispatcher — Can create and assign routes, view live status.',
     'docs.rxroutes.s5.driver': 'Driver — Can view assigned routes and update job status.',
     'docs.rxroutes.s6.title': '6. Tips',
     'docs.rxroutes.s6.tip1': 'Use the Daily Dashboard every morning to review pending routes.',
     'docs.rxroutes.s6.tip2': 'Require photo proof for high-value deliveries.',
-    'docs.rxroutes.s6.tip3': 'Export delivery records at month-end for billing or invoicing.',
+    'docs.rxroutes.s6.tip3': 'Export delivery records at month-end to share with your clients.',
 
     // BookingPro Manual
     'docs.bookingpro.title': 'BookingPro — User Manual',

@@ -608,13 +608,13 @@ const es = {
     'docs.rxroutes.s4.step2': 'Los conductores pueden adjuntar comprobante de entrega (foto o firma).',
     'docs.rxroutes.s4.step3': 'Todos los registros se guardan con marca de tiempo.',
     'docs.rxroutes.s5.title': '5. Roles y Permisos',
-    'docs.rxroutes.s5.admin': 'Admin — Acceso completo: rutas, conductores, reportes, facturación.',
+    'docs.rxroutes.s5.admin': 'Admin — Gestiona rutas, conductores, registros de entrega y configuración del equipo.',
     'docs.rxroutes.s5.dispatcher': 'Despachador — Puede crear y asignar rutas, ver estado en tiempo real.',
     'docs.rxroutes.s5.driver': 'Conductor — Puede ver sus rutas asignadas y actualizar el estado del trabajo.',
     'docs.rxroutes.s6.title': '6. Consejos',
     'docs.rxroutes.s6.tip1': 'Usa el Dashboard Diario cada mañana para revisar las rutas pendientes.',
     'docs.rxroutes.s6.tip2': 'Exige comprobante fotográfico para entregas de alto valor.',
-    'docs.rxroutes.s6.tip3': 'Exporta los registros de entregas al final del mes para facturación.',
+    'docs.rxroutes.s6.tip3': 'Exporta los registros de entregas al final del mes para compartir con tus clientes.',
 
     // Manual BookingPro
     'docs.bookingpro.title': 'BookingPro — Manual de Usuario',
