@@ -249,6 +249,9 @@ export default function BookingProPage() {
                         <Link href="/chaos-challenge" className="btn-secondary text-base px-7 py-3.5">
                             {t('app.cta.chaos')}
                         </Link>
+                        <Link href="/apps/bookingpro/manual" className="inline-flex items-center gap-2 px-7 py-3.5 border border-violet-200 text-violet-700 font-semibold rounded-xl hover:bg-violet-50 transition-all text-base">
+                            📖 User Manual
+                        </Link>
                     </div>
                 </div>
             </section>
