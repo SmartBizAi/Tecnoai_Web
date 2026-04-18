@@ -571,6 +571,7 @@ const es = {
     'common.brand': 'TecnoAI',
     'common.tagline': 'Tu negocio en una app: simple, rápido y hecho para ti.',
     'common.footer.links': 'Enlaces Rápidos',
+    'common.footer.company': 'Empresa',
     'common.footer.legal': '© 2025 TecnoAI. Todos los derechos reservados.',
     'common.back': '← Atrás',
 } as const;

@@ -21,10 +21,9 @@ export default function Footer() {
         <footer className="bg-gray-50 border-t border-gray-100 mt-20">
             <div className="max-w-7xl mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                    {/* Brand */}
                     <div className="md:col-span-1">
                         <Link href="/" className="flex items-center mb-4">
-                            <div className="bg-[#0f2250] rounded-lg px-3.5 py-1.5">
+                            <div className="bg-brand-900 rounded-lg px-3.5 py-1.5">
                                 <span className="text-white font-extrabold text-base tracking-tight leading-none select-none">
                                     TecnoAI
                                 </span>
@@ -32,22 +31,33 @@ export default function Footer() {
                         </Link>
                         <p className="text-sm text-gray-500 leading-relaxed">{t('common.tagline')}</p>
                         <div className="flex gap-3 mt-5">
-                            <a href="https://www.facebook.com/share/1E2ci29WMf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-12 h-12 rounded-lg bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
-                                <Facebook className="w-6 h-6 text-gray-600" />
+                            <a
+                                href="https://www.facebook.com/share/1E2ci29WMf/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Facebook"
+                                className="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                            >
+                                <Facebook className="w-5 h-5 text-gray-600" />
                             </a>
-                            <a href="https://www.instagram.com/tecno__ai?igsh=MTl3MWtnNGhyNmpibw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-12 h-12 rounded-lg bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
-                                <Instagram className="w-6 h-6 text-gray-600" />
+                            <a
+                                href="https://www.instagram.com/tecno__ai?igsh=MTl3MWtnNGhyNmpibw=="
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                                className="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                            >
+                                <Instagram className="w-5 h-5 text-gray-600" />
                             </a>
                         </div>
                     </div>
 
-                    {/* Quick Links */}
                     <div>
                         <h4 className="font-semibold text-gray-900 text-sm mb-4">{t('common.footer.links')}</h4>
                         <ul className="space-y-2.5">
                             {links.slice(0, 4).map((link) => (
                                 <li key={link.href}>
-                                    <Link href={link.href} className="text-sm text-gray-500 hover:text-gray-800 transition-colors">
+                                    <Link href={link.href} className="text-sm text-gray-500 hover:text-gray-800 transition-colors focus-visible:outline-none focus-visible:underline">
                                         {link.label}
                                     </Link>
                                 </li>
@@ -56,11 +66,11 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 className="font-semibold text-gray-900 text-sm mb-4">Company</h4>
+                        <h4 className="font-semibold text-gray-900 text-sm mb-4">{t('common.footer.company' as const)}</h4>
                         <ul className="space-y-2.5">
                             {links.slice(4).map((link) => (
                                 <li key={link.href}>
-                                    <Link href={link.href} className="text-sm text-gray-500 hover:text-gray-800 transition-colors">
+                                    <Link href={link.href} className="text-sm text-gray-500 hover:text-gray-800 transition-colors focus-visible:outline-none focus-visible:underline">
                                         {link.label}
                                     </Link>
                                 </li>
@@ -68,7 +78,6 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Contact */}
                     <div>
                         <h4 className="font-semibold text-gray-900 text-sm mb-4">{t('contact.title')}</h4>
                         <div className="space-y-2.5">
@@ -86,10 +95,9 @@ export default function Footer() {
 
                 <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-gray-400">{t('common.footer.legal')}</p>
-                    <div className="flex gap-4 text-sm text-gray-400">
-                        <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy</Link>
-                        <a href="#" className="hover:text-gray-600 transition-colors">Terms</a>
-                    </div>
+                    <Link href="/privacy" className="text-sm text-gray-400 hover:text-gray-600 transition-colors focus-visible:outline-none focus-visible:underline">
+                        Privacy Policy
+                    </Link>
                 </div>
             </div>
         </footer>

@@ -145,12 +145,13 @@ const BS4_PartnerView = () => (
         <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Partner Management</p>
         <div className="space-y-2">
             {[
-                { name: 'TruckCo', bookings: 12, active: 3, rate: '92%', color: 'border-l-violet-500', badge: 'bg-violet-50 text-violet-700' },
-                { name: 'MedSupply', bookings: 8, active: 2, rate: '87%', color: 'border-l-brand-500', badge: 'bg-brand-50 text-brand-700' },
-                { name: 'FastDrop', bookings: 15, active: 4, rate: '96%', color: 'border-l-emerald-500', badge: 'bg-emerald-50 text-emerald-700' },
-                { name: 'AirMove', bookings: 5, active: 1, rate: '80%', color: 'border-l-amber-500', badge: 'bg-amber-50 text-amber-700' },
+                { name: 'TruckCo', bookings: 12, active: 3, rate: '92%', dot: 'bg-violet-500', badge: 'bg-violet-50 text-violet-700' },
+                { name: 'MedSupply', bookings: 8, active: 2, rate: '87%', dot: 'bg-brand-500', badge: 'bg-brand-50 text-brand-700' },
+                { name: 'FastDrop', bookings: 15, active: 4, rate: '96%', dot: 'bg-emerald-500', badge: 'bg-emerald-50 text-emerald-700' },
+                { name: 'AirMove', bookings: 5, active: 1, rate: '80%', dot: 'bg-amber-500', badge: 'bg-amber-50 text-amber-700' },
             ].map((p) => (
-                <div key={p.name} className={`bg-white border border-gray-100 border-l-4 ${p.color} rounded-xl px-4 py-3 flex items-center gap-4`}>
+                <div key={p.name} className="bg-white border border-gray-100 rounded-xl px-4 py-3 flex items-center gap-3">
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${p.dot}`} />
                     <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                             <p className="text-sm font-bold text-gray-900">{p.name}</p>

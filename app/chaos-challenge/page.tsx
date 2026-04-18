@@ -117,7 +117,7 @@ function ResultsScreen({ answers, onUnlock, t }: { answers: Answers; onUnlock: (
             <div className="bg-gradient-to-br from-brand-50 to-brand-50 border border-brand-100 rounded-2xl p-7">
                 <h3 className="font-bold text-gray-900 mb-2">{t('chaos.results.roi.title')}</h3>
                 <p className="text-sm text-gray-600 mb-3">{t('chaos.results.roi.desc')}</p>
-                <div className="text-3xl font-extrabold gradient-text">{roi.hours}</div>
+                <div className="text-3xl font-extrabold text-brand-900">{roi.hours}</div>
                 <p className="text-sm text-gray-600 mt-2">{roi.description}</p>
                 <p className="text-xs text-gray-400 mt-2">Estimates based on typical businesses with your profile. Ranges vary.</p>
             </div>

@@ -23,7 +23,7 @@ export default function AboutPage() {
                         <p>{t('about.manifesto.p3')}</p>
                     </div>
 
-                    <div className="pl-6 border-l-4 border-brand-500 text-gray-400 italic space-y-3 my-8 text-lg md:text-xl font-normal">
+                    <div className="bg-brand-50 rounded-2xl px-7 py-6 text-gray-600 italic space-y-3 my-8 text-lg md:text-xl font-normal">
                         <p>{t('about.manifesto.q1')}</p>
                         <p>{t('about.manifesto.q2')}</p>
                         <p>{t('about.manifesto.q3')}</p>

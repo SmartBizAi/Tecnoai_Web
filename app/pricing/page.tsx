@@ -77,7 +77,7 @@ export default function PricingPage() {
                                 <h3 className={`text-xl font-bold mb-1 ${plan.highlight ? 'text-white' : 'text-gray-900'}`}>
                                     {t(plan.nameKey)}
                                 </h3>
-                                <div className={`text-4xl font-extrabold my-4 ${plan.highlight ? 'text-white' : 'gradient-text'}`}>
+                                <div className={`text-4xl font-extrabold my-4 ${plan.highlight ? 'text-white' : 'text-brand-900'}`}>
                                     {plan.credits}
                                     <span className={`text-base font-medium ml-1 ${plan.highlight ? 'text-brand-100' : 'text-gray-400'}`}>
                                         {t('pricing.plans.credits')}
