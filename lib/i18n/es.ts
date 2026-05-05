@@ -11,6 +11,7 @@ const es = {
     'nav.contact': 'Contacto',
     'nav.cta.explore': 'Explorar Apps',
     'nav.cta.chaos': 'Iniciar Reto Anti-Caos',
+    'nav.manuals': 'Manuales',
 
     // Home
     'home.hero.headline': 'Convierte el caos de tu negocio en un sistema real.',

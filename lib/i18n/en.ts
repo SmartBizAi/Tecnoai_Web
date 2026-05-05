@@ -11,6 +11,7 @@ const en = {
     'nav.contact': 'Contact',
     'nav.cta.explore': 'Explore Apps',
     'nav.cta.chaos': 'Start Chaos Challenge',
+    'nav.manuals': 'User Manuals',
 
     // Home
     'home.hero.headline': 'Turn business chaos into a real system.',
