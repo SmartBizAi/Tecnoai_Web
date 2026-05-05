@@ -22,9 +22,9 @@ export default function Header() {
         { href: '/pricing', label: t('nav.pricing') },
         { href: '/case-studies', label: t('nav.cases') },
         { href: '/about', label: t('nav.about') },
+        { href: '/user-manuals', label: t('nav.manuals') },
         { href: '/faq', label: t('nav.faq') },
         { href: '/contact', label: t('nav.contact') },
-        { href: '/user-manuals', label: t('nav.manuals') },
     ];
 
     return (
@@ -47,7 +47,7 @@ export default function Header() {
                     </Link>
 
                     <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
-                        {navLinks.slice(0, 6).map((link) => (
+                        {navLinks.slice(0, 7).map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
