@@ -38,7 +38,14 @@ export default function PortalLoginPage() {
         const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
 
         if (signInError) {
-            setError(t('portal.login.error'));
+            const msg = signInError.message.toLowerCase();
+            if (msg.includes('invalid') || msg.includes('credentials')) {
+                setError(t('portal.login.error'));
+            } else if (msg.includes('confirm') || msg.includes('email')) {
+                setError(t('portal.login.error.confirm'));
+            } else {
+                setError(signInError.message);
+            }
             setLoading(false);
             return;
         }

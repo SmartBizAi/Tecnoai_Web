@@ -643,6 +643,7 @@ const en = {
     'portal.login.submit': 'Sign In',
     'portal.login.loading': 'Signing in...',
     'portal.login.error': 'Invalid email or password. Please try again.',
+    'portal.login.error.confirm': 'Please check your email and click the confirmation link before signing in.',
     'portal.login.register': "Don't have an account?",
     'portal.login.register.link': 'Request access',
     'portal.register.title': 'Request Access',

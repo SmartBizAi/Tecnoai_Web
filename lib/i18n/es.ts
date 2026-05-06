@@ -643,6 +643,7 @@ const es = {
     'portal.login.submit': 'Iniciar Sesión',
     'portal.login.loading': 'Iniciando sesión...',
     'portal.login.error': 'Correo o contraseña incorrectos. Inténtalo de nuevo.',
+    'portal.login.error.confirm': 'Por favor revisa tu correo y haz clic en el enlace de confirmación antes de iniciar sesión.',
     'portal.login.register': '¿No tienes una cuenta?',
     'portal.login.register.link': 'Solicitar acceso',
     'portal.register.title': 'Solicitar Acceso',
