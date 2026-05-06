@@ -633,6 +633,22 @@ const es = {
     'manuals.locations_owner.s5.desc': 'Accede a reportes de tu ubicación: ventas diarias, volumen de reservas, rotación de inventario y actividad del personal. Exporta o comparte con tu administrador.',
     'manuals.locations_owner.s6.title': 'Configuración y Preferencias',
     'manuals.locations_owner.s6.desc': 'Actualiza los horarios de tu ubicación, información de contacto y preferencias de notificación. Los cambios se reflejan en toda la plataforma de inmediato.',
+
+    // Blog
+    'nav.blog': 'Blog',
+    'blog.title': 'Blog',
+    'blog.subtitle': 'Consejos de tecnología para pequeños negocios latinos — actualizado diariamente.',
+    'blog.readMore': 'Leer artículo',
+    'blog.empty': 'Próximamente nuevos artículos.',
+    'blog.back': '← Volver al blog',
+    'blog.publishedOn': 'Publicado el',
+    'blog.by': 'Por TecnoAI',
+    'blog.minRead': 'min de lectura',
+    'blog.ctaTitle': '¿Listo para digitalizar tu negocio?',
+    'blog.ctaDesc': 'TecnoAI crea apps prácticas para pequeños negocios latinos. Sin código.',
+    'blog.ctaBtn': 'Explorar TecnoAI',
+    'blog.tags': 'Etiquetas',
+    'blog.relatedTopic': 'Tema',
 } as const;
 
 export default es;

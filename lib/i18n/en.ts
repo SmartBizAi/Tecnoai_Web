@@ -633,6 +633,22 @@ const en = {
     'manuals.locations_owner.s5.desc': 'Access reports scoped to your location: daily sales, booking volume, inventory turnover, and staff activity. Export or share with your admin.',
     'manuals.locations_owner.s6.title': 'Settings & Preferences',
     'manuals.locations_owner.s6.desc': "Update your location's hours, contact info, and notification preferences. Changes are reflected across the platform immediately.",
+
+    // Blog
+    'nav.blog': 'Blog',
+    'blog.title': 'Blog',
+    'blog.subtitle': 'Tech tips for small Latino businesses — updated daily.',
+    'blog.readMore': 'Read article',
+    'blog.empty': 'New articles coming soon.',
+    'blog.back': '← Back to blog',
+    'blog.publishedOn': 'Published on',
+    'blog.by': 'By TecnoAI',
+    'blog.minRead': 'min read',
+    'blog.ctaTitle': 'Ready to digitize your business?',
+    'blog.ctaDesc': 'TecnoAI builds practical apps for small Latino businesses. No code needed.',
+    'blog.ctaBtn': 'Explore TecnoAI',
+    'blog.tags': 'Tags',
+    'blog.relatedTopic': 'Topic',
 } as const;
 
 export type TranslationKey = keyof typeof en;

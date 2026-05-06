@@ -17,6 +17,7 @@ export default function Header() {
 
     const navLinks = [
         { href: '/apps', label: t('nav.apps') },
+        { href: '/blog', label: t('nav.blog') },
         { href: '/chaos-challenge', label: t('nav.chaos') },
         { href: '/custom', label: t('nav.custom') },
         { href: '/pricing', label: t('nav.pricing') },
