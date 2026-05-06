@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Lock } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Header() {
@@ -94,6 +94,13 @@ export default function Header() {
                         >
                             {t('nav.cta.explore')}
                         </Link>
+                        <Link
+                            href="/portal"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 xl:px-4 xl:py-2 border border-gray-200 text-gray-600 font-medium rounded-xl hover:bg-gray-50 transition-all text-xs whitespace-nowrap"
+                        >
+                            <Lock className="w-3 h-3" />
+                            {t('nav.portal')}
+                        </Link>
                     </div>
 
                     {/* Mobile menu button */}
@@ -137,6 +144,10 @@ export default function Header() {
                         </Link>
                         <Link href="/chaos-challenge" onClick={() => setMenuOpen(false)} className="flex items-center justify-center gap-1.5 px-4 py-2.5 border border-gray-200 text-gray-700 font-medium rounded-xl text-sm">
                             {t('nav.cta.chaos')}
+                        </Link>
+                        <Link href="/portal" onClick={() => setMenuOpen(false)} className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 text-gray-600 font-medium rounded-xl text-sm">
+                            <Lock className="w-4 h-4" />
+                            {t('nav.portal')}
                         </Link>
                     </div>
                 </div>
