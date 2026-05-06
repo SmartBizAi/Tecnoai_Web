@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSRSF Booking Pro – Admin User Manual</title>
+  <style>
+    :root {
+      --orange: #f97316;
+      --orange-dark: #ea580c;
+      --orange-light: #fff7ed;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-400: #94a3b8;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--slate-700);
+      background: #fff;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    /* ── Cover ── */
+    .cover {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #1e1b4b 100%);
+      color: #fff;
+      padding: 80px 40px 60px;
+      text-align: center;
+    }
+    .cover .badge {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .cover h1 { font-size: 42px; font-weight: 900; margin-bottom: 12px; }
+    .cover h1 span { color: var(--orange); }
+    .cover p { font-size: 17px; color: #94a3b8; max-width: 520px; margin: 0 auto 32px; }
+    .cover .meta { font-size: 12px; color: #64748b; }
+
+    /* ── Layout ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Table of Contents ── */
+    .toc {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin: 48px 0;
+    }
+    .toc h2 { font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 20px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--slate-700); text-decoration: none; font-weight: 600; }
+    .toc a:hover { color: var(--orange); }
+    .toc .sub { margin-top: 4px; margin-left: 16px; font-size: 13px; color: var(--slate-400); font-weight: 400; }
+
+    /* ── Sections ── */
+    .section { padding: 56px 0; border-bottom: 1px solid var(--slate-100); }
+    .section:last-child { border-bottom: none; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .section-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--orange-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .section-title { font-size: 26px; font-weight: 900; color: var(--slate-800); }
+    .section-subtitle { font-size: 13px; color: var(--slate-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+
+    h3 { font-size: 18px; font-weight: 800; color: var(--slate-800); margin: 32px 0 12px; }
+    h4 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange-dark); margin: 24px 0 8px; }
+    p { margin-bottom: 14px; }
+
+    /* ── Screenshot placeholder ── */
+    .screenshot {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      border: 2px dashed var(--slate-200);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      margin: 20px 0;
+      color: var(--slate-400);
+    }
+    .screenshot .icon { font-size: 32px; margin-bottom: 8px; }
+    .screenshot .label { font-size: 13px; font-weight: 700; color: var(--slate-600); }
+    .screenshot .desc { font-size: 12px; color: var(--slate-400); margin-top: 4px; }
+
+    /* ── Steps ── */
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
+    .steps li {
+      counter-increment: step;
+      display: flex; gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step);
+      min-width: 28px; height: 28px;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Info boxes ── */
+    .info-box {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .info-box.tip { background: #f0fdf4; border-left: 4px solid #22c55e; }
+    .info-box.warning { background: #fefce8; border-left: 4px solid #eab308; }
+    .info-box.info { background: #eff6ff; border-left: 4px solid #3b82f6; }
+    .info-box .icon { font-size: 18px; flex-shrink: 0; }
+    .info-box .text { font-size: 14px; line-height: 1.6; }
+    .info-box strong { font-weight: 800; }
+
+    /* ── Feature grid ── */
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+    .feature-card {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .feature-card .emoji { font-size: 24px; margin-bottom: 8px; }
+    .feature-card .title { font-size: 13px; font-weight: 800; color: var(--slate-800); margin-bottom: 4px; }
+    .feature-card .desc { font-size: 12px; color: var(--slate-400); line-height: 1.5; }
+
+    /* ── Field table ── */
+    .field-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .field-table th { background: var(--slate-800); color: #fff; text-align: left; padding: 10px 14px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+    .field-table th:first-child { border-radius: 8px 0 0 0; }
+    .field-table th:last-child { border-radius: 0 8px 0 0; }
+    .field-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--slate-100); vertical-align: top; }
+    .field-table tr:last-child td { border-bottom: none; }
+    .field-table tr:hover td { background: var(--orange-light); }
+    .required { color: var(--red); font-weight: 900; font-size: 11px; }
+    .optional { color: var(--slate-400); font-weight: 700; font-size: 11px; }
+
+    /* ── Status badges ── */
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+    .badge.green { background: #dcfce7; color: #166534; }
+    .badge.yellow { background: #fef9c3; color: #854d0e; }
+    .badge.red { background: #fee2e2; color: #991b1b; }
+    .badge.blue { background: #dbeafe; color: #1e40af; }
+    .badge.gray { background: #f1f5f9; color: #475569; }
+    .badge.purple { background: #f3e8ff; color: #6b21a8; }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--slate-800);
+      color: var(--slate-400);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      margin-top: 60px;
+    }
+    .footer strong { color: var(--orange); }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">Admin Role</div>
+  <h1>JSRSF <span>Booking Pro</span></h1>
+  <h2 style="font-size:22px; font-weight:700; margin-bottom:16px; color:#e2e8f0;">Administrator User Manual</h2>
+  <p>Complete guide to managing your fleet, staff, bookings, pricing, and all system settings.</p>
+  <div class="meta">Version 1.0 &nbsp;·&nbsp; by <strong style="color:var(--orange)">TecnoAi</strong> &nbsp;·&nbsp; JSRSF South Florida Systems</div>
+</div>
+
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>📋 Table of Contents</h2>
+    <ol>
+      <li><a href="#dashboard">Dashboard — Your Operations Overview</a></li>
+      <li><a href="#bookings">Bookings — Fleet Reservations</a>
+        <div class="sub">Creating, editing, filtering, status management, payments</div>
+      </li>
+      <li><a href="#locations">Locations — Port &amp; Fleet Management</a>
+        <div class="sub">Create locations, set schedules, assign activities and pricing</div>
+      </li>
+      <li><a href="#map">Map View — Location Scout</a></li>
+      <li><a href="#leads">Leads &amp; CRM — Client Directory</a></li>
+      <li><a href="#settings">Settings Menu</a>
+        <div class="sub">Staff, Promo Codes, Credits, Time Tracker, Canned Messages, Webhooks</div>
+      </li>
+      <li><a href="#activities-mgmt">Activities Management</a>
+        <div class="sub">Pricing Rules, Activities, Service Categories</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- 1. DASHBOARD -->
+  <div class="section" id="dashboard">
+    <div class="section-header">
+      <div class="section-icon">🏠</div>
+      <div>
+        <div class="section-subtitle">Section 1</div>
+        <div class="section-title">Dashboard</div>
+      </div>
+    </div>
+
+    <p>The Dashboard is your command center. Every time you log in, you land here first. It gives you a real-time overview of revenue, reservations, and fleet status at a glance.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Dashboard — Full Overview</div>
+      <div class="desc">Shows the 4 stat cards, port availability widget, activity log, and New Booking button</div>
+    </div>
+
+    <h3>Stat Cards (Top Row)</h3>
+    <p>Four cards display your most important KPIs for the current month:</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="emoji">💰</div>
+        <div class="title">Volume (This Month)</div>
+        <div class="desc">Total revenue collected this calendar month. Click it to open the full Reports panel with CSV export.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">📅</div>
+        <div class="title">Today's Reservations</div>
+        <div class="desc">Number of bookings scheduled for today across all locations.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">✅</div>
+        <div class="title">Confirmed</div>
+        <div class="desc">Total bookings in CONFIRMED status — ready to go.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">❌</div>
+        <div class="title">Cancellations</div>
+        <div class="desc">Cancelled bookings this month. High numbers may indicate operational issues.</div>
+      </div>
+    </div>
+
+    <h3>Port Availability Widget</h3>
+    <p>Shows how many of your locations are active for today. A warning alert appears if any port is marked unavailable — allowing you to react quickly.</p>
+
+    <h3>Activity Log</h3>
+    <p>Displays the last 10 completed bookings with timestamps. Useful for verifying that recent reservations were correctly processed.</p>
+
+    <h3>New Booking Button</h3>
+    <p>The large orange <strong>+ New Booking</strong> button opens the Fleet Order modal. This is the primary way to create reservations. See <a href="#bookings">Section 2</a> for full details.</p>
+
+    <h3>Reports Panel</h3>
+    <p>Click the Volume card to open a sliding panel with detailed revenue analytics. From here you can also <strong>export to CSV</strong> for accounting or spreadsheet use.</p>
+  </div>
+
+  <!-- 2. BOOKINGS -->
+  <div class="section" id="bookings">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div>
+        <div class="section-subtitle">Section 2</div>
+        <div class="section-title">Bookings</div>
+      </div>
+    </div>
+
+    <p>The Bookings page is where all reservations live. You can view, filter, create, edit, move, and manage payments for every booking in the system.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Bookings List View with filters</div>
+      <div class="desc">Shows the filter bar, list of bookings with status badges, and action buttons per row</div>
+    </div>
+
+    <h3>View Modes</h3>
+    <p>Toggle between <strong>List View</strong> (default — shows all bookings in a table) and <strong>Calendar View</strong> (shows booking dots on a monthly calendar — great for spotting busy days).</p>
+
+    <h3>Filtering Bookings</h3>
+    <p>Use the filter bar to narrow down bookings:</p>
+    <table class="field-table">
+      <thead><tr><th>Filter</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Status</strong></td><td>Show ALL, CONFIRMED, PENDING, CANCELLED, DRAFT, or COMPLETED bookings</td></tr>
+        <tr><td><strong>Date</strong></td><td>Navigate day by day with ← Today → buttons, or pick a specific date</td></tr>
+        <tr><td><strong>Time</strong></td><td>Filter by a specific launch time</td></tr>
+        <tr><td><strong>Location</strong></td><td>Filter by a specific port/location</td></tr>
+        <tr><td><strong>Booking Ref</strong></td><td>Search by partial booking reference ID</td></tr>
+        <tr><td><strong>Customer</strong></td><td>Search by customer name or phone number</td></tr>
+        <tr><td><strong>Show Cancelled</strong></td><td>Toggle to include or exclude cancelled bookings</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Creating a New Booking</h3>
+    <p>Click the <strong>+ New Booking</strong> button (on Dashboard or Bookings page) to open the Fleet Order modal. Fill out the form in this order:</p>
+
+    <h4>Step 1 — Select Service Category</h4>
+    <p>Choose the type of service: Jet Skis 🚤, ATV/Quad 🚜, Yachts 🛥️, or any custom category your team has configured.</p>
+
+    <h4>Step 2 — Build Your Order (Cart)</h4>
+    <ul class="steps">
+      <li>Select the <strong>Activity</strong> from the dropdown (filtered by category).</li>
+      <li>Type a <strong>Target Area</strong> (e.g., "Miami Beach, Brickell") — optional but helps find nearby ports.</li>
+      <li>Select the <strong>Port/Location</strong> from the auto-suggested list ordered by proximity.</li>
+      <li>Set <strong>Quantity</strong> — for Jet Skis: choose Single 👤 and/or Double 👥 riders. For others: enter units.</li>
+      <li>Select <strong>Duration</strong> (1h, 2h, 3h, 4h, 6h, or 8h).</li>
+      <li>The <strong>Price</strong> auto-fills from your pricing rules. If no rule exists, enter it manually.</li>
+      <li>Click <strong>Add to Order</strong> to add this item to the cart. Repeat for multi-activity bookings.</li>
+    </ul>
+
+    <div class="info-box tip">
+      <span class="icon">💡</span>
+      <div class="text"><strong>Multi-Activity Bookings:</strong> You can add multiple activities to the same order (e.g., Jet Ski + ATV for the same group). Each item shows independently in the cart with its own subtotal.</div>
+    </div>
+
+    <h4>Step 3 — Customer Information</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Required</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Customer ID (Full Name)</td><td><span class="required">Required</span></td><td>Client's full name</td></tr>
+        <tr><td>Phone</td><td><span class="required">Required</span></td><td>Select country code (+1 US, +52 MX, etc.) then enter number</td></tr>
+        <tr><td>Email</td><td><span class="optional">Optional</span></td><td>Required only if you want to send email confirmations</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Step 4 — Date, Time &amp; Quantity</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Launch Date</td><td>Date picker for the reservation date</td></tr>
+        <tr><td>Launch Time</td><td>Time picker or preset scheduled times if configured</td></tr>
+        <tr><td>Number of People</td><td>Total headcount (minimum 1)</td></tr>
+        <tr><td>Log Notes</td><td>Internal notes, special instructions, or rider info</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Step 5 — Promo Code &amp; Referral</h4>
+    <p>Enter a promo code if the customer has one and click <strong>Apply</strong>. The discount is automatically calculated. Select the referral source (Instagram, TikTok, Google, Walk-in, etc.) for marketing analytics.</p>
+
+    <h4>Step 6 — Payment</h4>
+    <p>Select the payment method: <strong>Cash 💵, Card 💳, Zelle ⚡, Venmo 📱, CashApp 💸, or Other</strong>.</p>
+    <p>If <strong>Card</strong> is selected, two options appear:</p>
+    <ul>
+      <li><strong>Send Link</strong> — sends a Stripe payment link to the customer</li>
+      <li><strong>Charge (Phone)</strong> — manually charge a card via phone using the Stripe terminal</li>
+    </ul>
+    <p>Fill in the payment amounts:</p>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Total Amount</td><td>Auto-calculated from cart, or click "Use $X" to fill automatically</td></tr>
+        <tr><td>Tip</td><td>Optional gratuity in dollars</td></tr>
+        <tr><td>Deposit Amount</td><td>If a partial deposit was taken upfront</td></tr>
+        <tr><td>Payment Notes</td><td>Transaction ID, reference number, or any payment detail</td></tr>
+      </tbody>
+    </table>
+    <p>The <strong>summary box</strong> shows: Subtotal → Promo Discount → Total → Tax (7%) → Deposit → <strong>Balance Due at Location</strong>.</p>
+
+    <h4>Step 7 — Confirm &amp; Send Messages</h4>
+    <p>After clicking <strong>Confirm Order</strong>, the booking is created. A second screen appears where you can:</p>
+    <ul class="steps">
+      <li>Send a Stripe <strong>payment link</strong> for the deposit amount.</li>
+      <li>Select an <strong>SMS template</strong> to send a confirmation text to the customer.</li>
+      <li>Select an <strong>Email template</strong> for an email confirmation.</li>
+      <li>Preview the message (variables like customer name, date, and address are auto-filled).</li>
+      <li>Click <strong>Send &amp; Finish</strong> or skip messages entirely.</li>
+    </ul>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Booking Modal — Payment Section &amp; Summary Box</div>
+      <div class="desc">Shows payment method grid, amount fields, and the auto-calculated balance due summary</div>
+    </div>
+
+    <h3>Managing Existing Bookings</h3>
+    <p>Click any booking row to see its full details. From the detail view, admins have access to:</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="emoji">✏️</div>
+        <div class="title">Edit</div>
+        <div class="desc">Modify booking details: quantities, prices, notes, customer info</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">🔄</div>
+        <div class="title">Move</div>
+        <div class="desc">Reschedule to a different date, time, or location</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">💳</div>
+        <div class="title">Payment Link</div>
+        <div class="desc">Send a Stripe link for the remaining balance</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">📱</div>
+        <div class="title">Manual Charge</div>
+        <div class="desc">Charge a card via phone/API through Stripe</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">📊</div>
+        <div class="title">Status Update</div>
+        <div class="desc">Change status: Confirmed, Completed, Cancelled, etc.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">💬</div>
+        <div class="title">SMS / Email</div>
+        <div class="desc">Resend confirmation messages to the customer</div>
+      </div>
+    </div>
+
+    <h3>Booking Status Reference</h3>
+    <p>Every booking has a color-coded status badge:</p>
+    <table class="field-table">
+      <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge green">CONFIRMED</span></td><td>Booking is confirmed and scheduled</td></tr>
+        <tr><td><span class="badge yellow">PENDING</span></td><td>Awaiting confirmation or payment</td></tr>
+        <tr><td><span class="badge gray">DRAFT</span></td><td>Saved locally but not submitted yet</td></tr>
+        <tr><td><span class="badge blue">COMPLETED</span></td><td>Activity was completed successfully</td></tr>
+        <tr><td><span class="badge red">CANCELLED</span></td><td>Booking was cancelled</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Saved Drafts</h3>
+    <p>Click <strong>Save Draft</strong> at any point during booking creation to save your progress locally (drafts expire after 24 hours). Click the dropdown at the top of the modal to restore a previous draft.</p>
+  </div>
+
+  <!-- 3. LOCATIONS -->
+  <div class="section" id="locations">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div>
+        <div class="section-subtitle">Section 3</div>
+        <div class="section-title">Locations</div>
+      </div>
+    </div>
+
+    <p>Locations (also called Ports) represent physical places where your fleet operates. Each location has its own schedule, activities, capacity, and pricing rules.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Locations Page — Grid View</div>
+      <div class="desc">Cards showing each port with name, address, category, and status badge</div>
+    </div>
+
+    <h3>Creating a New Location</h3>
+    <p>Click the <strong>+ Create New Location</strong> button. The location modal has three tabs:</p>
+
+    <h4>Tab 1 — General Info</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Required</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Location Name</td><td><span class="required">Required</span></td><td>e.g., "Miami Beach Marina"</td></tr>
+        <tr><td>Category</td><td><span class="required">Required</span></td><td>Service type: Jet Skis, ATV, Yachts, or custom</td></tr>
+        <tr><td>Address</td><td><span class="required">Required</span></td><td>Full street address — Google autocomplete enabled</td></tr>
+        <tr><td>Latitude / Longitude</td><td><span class="optional">Auto</span></td><td>Auto-filled from address lookup or set manually</td></tr>
+        <tr><td>Max Capacity</td><td><span class="optional">Optional</span></td><td>Maximum simultaneous units allowed</td></tr>
+        <tr><td>Base Units Available</td><td><span class="required">Required</span></td><td>Default fleet size for this location</td></tr>
+        <tr><td>Business Hours</td><td><span class="required">Required</span></td><td>Set open/close times per day of week; toggle days on/off</td></tr>
+        <tr><td>Status</td><td><span class="required">Required</span></td><td>OPEN, CLOSED, or MAINTENANCE</td></tr>
+        <tr><td>Rules / Policies</td><td><span class="optional">Optional</span></td><td>Rider requirements, age restrictions, waiver info, etc.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Tab 2 — Activities</h4>
+    <p>Assign activities (tours, experiences) that are offered at this location. You can:</p>
+    <ul class="steps">
+      <li>Browse and add from the list of configured activities.</li>
+      <li>Set scheduled launch times per activity (e.g., 9:00 AM, 11:00 AM, 2:00 PM).</li>
+      <li>Edit or remove activities from this location.</li>
+    </ul>
+
+    <h4>Tab 3 — Pricing</h4>
+    <p>Assign pricing rules to this location. Rules define how much each combination of activity, duration, and quantity costs. You can:</p>
+    <ul class="steps">
+      <li>Assign existing pricing rules from the global list.</li>
+      <li>Set a <strong>Price Override</strong> for any rule (replaces the base price for this specific location).</li>
+      <li>Remove a rule from this location without deleting it globally.</li>
+    </ul>
+
+    <div class="info-box info">
+      <span class="icon">ℹ️</span>
+      <div class="text"><strong>How Pricing Works:</strong> When creating a booking, the system automatically matches the selected activity, duration, and quantity against pricing rules assigned to the chosen location. If no rule matches, the system shows a "No rule — enter manually" badge so the agent can input the price.</div>
+    </div>
+
+    <h3>Editing Hourly Availability</h3>
+    <p>Within a location, click <strong>Edit Hours</strong> to set how many units are available per hour of the day. This lets you reduce capacity during specific hours without closing the location entirely.</p>
+
+    <h3>Activating / Deactivating Locations</h3>
+    <p>Each location row has an <strong>Active/Inactive toggle</strong>. Inactive locations are hidden from the booking modal and map view. Use this to temporarily suspend a port without deleting it.</p>
+
+    <h3>Deleting a Location</h3>
+    <p>Click the <strong>Delete</strong> (trash) button on a location. A confirmation dialog will appear. Note: this action is permanent.</p>
+  </div>
+
+  <!-- 4. MAP -->
+  <div class="section" id="map">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div>
+        <div class="section-subtitle">Section 4</div>
+        <div class="section-title">Map View</div>
+      </div>
+    </div>
+
+    <p>The Map View lets you visualize all your active locations on an interactive Google Map. It's useful for scouting new ports and helping customers understand where services are offered.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Map View with location markers and filter panel</div>
+      <div class="desc">Shows the Google Map with colored location pins and the left sidebar filter panel</div>
+    </div>
+
+    <h3>Features</h3>
+    <ul class="steps">
+      <li>Click any <strong>map marker</strong> to see location details (name, address, category, status).</li>
+      <li>Use the <strong>Category Filter</strong> to show only Jet Skis, ATV, or Yacht locations.</li>
+      <li>Enter an <strong>address + radius</strong> to find all locations within X miles — distances are shown sorted by proximity.</li>
+      <li>Click <strong>Book Now</strong> on any location detail to open the Booking modal with that location pre-selected.</li>
+    </ul>
+
+    <div class="info-box warning">
+      <span class="icon">⚠️</span>
+      <div class="text"><strong>Credit Cost:</strong> Each map load and geocoding search consumes credits. Use filters wisely to avoid unnecessary credit consumption.</div>
+    </div>
+  </div>
+
+  <!-- 5. LEADS & CRM -->
+  <div class="section" id="leads">
+    <div class="section-header">
+      <div class="section-icon">👥</div>
+      <div>
+        <div class="section-subtitle">Section 5</div>
+        <div class="section-title">Leads &amp; CRM</div>
+      </div>
+    </div>
+
+    <p>The Leads &amp; CRM section is your client directory. Every person who has ever made a booking is automatically saved here with their full history, visit count, and lifetime value.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Leads Page — Client Directory table</div>
+      <div class="desc">Shows the metric cards, filter bar, and client list with status badges and visit counts</div>
+    </div>
+
+    <h3>Top Metrics</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="emoji">👤</div>
+        <div class="title">Total Contacts</div>
+        <div class="desc">Total unique clients in your database</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">🔄</div>
+        <div class="title">Returning Clients</div>
+        <div class="desc">Clients with 2+ bookings. Click to filter the list to returning clients only.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">💰</div>
+        <div class="title">Est. Lifetime Value</div>
+        <div class="desc">Sum of estimated spend across all clients</div>
+      </div>
+    </div>
+
+    <h3>Filtering Your Client List</h3>
+    <table class="field-table">
+      <thead><tr><th>Filter</th><th>Options</th></tr></thead>
+      <tbody>
+        <tr><td>Search</td><td>By client name or phone number</td></tr>
+        <tr><td>Status</td><td>All, New, Returning &amp; VIP, VIP Only</td></tr>
+        <tr><td>Date Segment</td><td>Filter by last visit date range</td></tr>
+        <tr><td>Location</td><td>Show clients who visited a specific port</td></tr>
+        <tr><td>Category</td><td>Filter by service type (JETSKI, ATV, YACHT)</td></tr>
+        <tr><td>Sort By</td><td>Newest, Oldest, Highest Spend, Lowest Spend, Most Visits</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Client Status Badges</h3>
+    <table class="field-table">
+      <thead><tr><th>Badge</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge gray">NEW</span></td><td>First-time customer</td></tr>
+        <tr><td><span class="badge green">RETURNING</span></td><td>Has made 2 or more bookings</td></tr>
+        <tr><td><span class="badge purple">VIP 💎</span></td><td>High-value returning customer</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Client Detail Profile</h3>
+    <p>Click <strong>View Profile →</strong> on any client to open their full profile. Here you can see:</p>
+    <ul class="steps">
+      <li><strong>Lifetime Value</strong>, total visits, and first seen date.</li>
+      <li><strong>Saved Cards</strong> — last 4 digits and card type from Stripe.</li>
+      <li><strong>Service History</strong> — full timeline of every booking, with service type, date, location, payment method, and status.</li>
+      <li><strong>📞 Call</strong> — launches a call to the client's phone number.</li>
+      <li><strong>💬 WhatsApp</strong> — opens a direct WhatsApp message to the client.</li>
+    </ul>
+  </div>
+
+  <!-- 6. SETTINGS -->
+  <div class="section" id="settings">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div>
+        <div class="section-subtitle">Section 6</div>
+        <div class="section-title">Settings Menu</div>
+      </div>
+    </div>
+
+    <p>The Settings section in the left sidebar contains all administrative configuration tools. Click <strong>Settings</strong> in the sidebar to expand the submenu.</p>
+
+    <!-- 6.1 Staff -->
+    <h3>👤 Staff Management</h3>
+    <p>Manage all user accounts in the system. You can see every team member, their role, and their hourly rate.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Staff Management Page</div>
+      <div class="desc">Shows the user table with name, email, role badges, hourly rate, and action buttons</div>
+    </div>
+
+    <h4>Creating a New Staff Profile</h4>
+    <ul class="steps">
+      <li>Click <strong>+ Add New Profile</strong>.</li>
+      <li>Enter the team member's <strong>Full Name</strong>, <strong>Work Email</strong>, and select their <strong>System Role</strong>.</li>
+      <li>If the role is <strong>Location Owner</strong>, assign them to a specific location.</li>
+      <li>Enter their <strong>Hourly Rate</strong> (used by the Time Tracker for payment calculation).</li>
+      <li>Save — the new user gets a temporary password of <strong>pass123</strong> and must reset it on first login.</li>
+    </ul>
+
+    <h4>System Roles Explained</h4>
+    <table class="field-table">
+      <thead><tr><th>Role</th><th>What They Can Do</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sales Rep</strong></td><td>Create and manage bookings, clock in/out, view map</td></tr>
+        <tr><td><strong>Location Owner</strong></td><td>View their location's bookings and manage their availability</td></tr>
+        <tr><td><strong>Admin</strong></td><td>Full access to all features except super-admin tools</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Resetting a Password</h4>
+    <p>Click the 🔑 key icon next to a user, enter a new password (minimum 6 characters), and click Reset. The account email is shown for confirmation.</p>
+
+    <!-- 6.2 Promo Codes -->
+    <h3>🏷️ Promo Codes</h3>
+    <p>Create discount codes that customers can use during booking checkout.</p>
+
+    <h4>Creating a Promo Code</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Code</td><td>Alphanumeric code (e.g., SUMMER25). Uppercase, no spaces.</td></tr>
+        <tr><td>Discount Type</td><td>USD = fixed dollar amount | PERCENT = percentage off</td></tr>
+        <tr><td>Discount Value</td><td>Amount or percentage number</td></tr>
+        <tr><td>Applicable Locations</td><td>Leave empty to apply to all locations</td></tr>
+        <tr><td>Applicable Services</td><td>Leave empty to apply to all service types</td></tr>
+        <tr><td>Start / End Date</td><td>Optional validity window</td></tr>
+        <tr><td>Usage Limit</td><td>Optional cap on total uses</td></tr>
+        <tr><td>Active Toggle</td><td>Enable/disable the code at any time</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 6.3 Credits -->
+    <h3>💳 Credits</h3>
+    <p>Credits are the billing currency for using the JSRSF Booking Pro platform. Each action costs a small number of credits.</p>
+
+    <h4>Credit Cost Reference</h4>
+    <table class="field-table">
+      <thead><tr><th>Action</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Create a Booking</td><td>1 credit</td></tr>
+        <tr><td>Edit / Move a Booking</td><td>1 credit</td></tr>
+        <tr><td>Map / Places / Geocoding Search</td><td>1 credit each</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Purchasing Credits</h4>
+    <p>Three plans are available — click <strong>Buy</strong> on any plan and you'll be redirected to Stripe checkout:</p>
+    <table class="field-table">
+      <thead><tr><th>Plan</th><th>Credits</th><th>Price</th><th>Per Credit</th></tr></thead>
+      <tbody>
+        <tr><td>⚡ Starter</td><td>500</td><td>$125</td><td>$0.25</td></tr>
+        <tr><td>🔥 Growth (Popular)</td><td>1,000</td><td>$200</td><td>$0.20</td></tr>
+        <tr><td>💎 Pro</td><td>2,500</td><td>$375</td><td>$0.15</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box warning">
+      <span class="icon">⚠️</span>
+      <div class="text"><strong>Low Balance Alerts:</strong> The credit pill in the sidebar turns <strong>orange below 50 credits</strong> and <strong>red below 10 credits</strong> with a pulse animation. Recharge before you run out to avoid booking interruptions.</div>
+    </div>
+
+    <!-- 6.4 Time Tracker -->
+    <h3>⏱️ Time Tracker</h3>
+    <p>Track your Sales Reps' working hours and calculate their pay. Sales Reps clock in/out from the header bar; admins review entries here.</p>
+
+    <h4>How to Use</h4>
+    <ul class="steps">
+      <li>Select a <strong>Staff Member</strong> from the dropdown to filter entries.</li>
+      <li>Set a <strong>Date Range</strong> to see only the relevant period.</li>
+      <li>The <strong>Summary Table</strong> shows total hours, entry count, total paid, and total unpaid per person.</li>
+      <li>The <strong>Detailed Entries Table</strong> shows each individual clock-in/out record.</li>
+      <li>Click the <strong>Edit</strong> button on any entry to adjust times, add notes, set payment amount, and mark as <strong>paid or unpaid</strong>.</li>
+    </ul>
+
+    <!-- 6.5 Canned Messages -->
+    <h3>💬 Canned Messages</h3>
+    <p>Create reusable message templates for SMS and Email confirmations sent to customers after booking.</p>
+
+    <h4>SMS Templates</h4>
+    <p>Keep messages under 160 characters for a single SMS. Use the <strong>variable buttons</strong> to insert dynamic values that are auto-filled when the message is sent:</p>
+    <div class="feature-grid">
+      <div class="feature-card"><div class="title">{customerName}</div><div class="desc">Client's full name</div></div>
+      <div class="feature-card"><div class="title">{bookingRef}</div><div class="desc">Booking reference number</div></div>
+      <div class="feature-card"><div class="title">{date}</div><div class="desc">Launch date</div></div>
+      <div class="feature-card"><div class="title">{time}</div><div class="desc">Launch time</div></div>
+      <div class="feature-card"><div class="title">{locationName}</div><div class="desc">Port/location name</div></div>
+      <div class="feature-card"><div class="title">{address}</div><div class="desc">Full location address</div></div>
+    </div>
+
+    <h4>Email Templates</h4>
+    <p>Email templates have a <strong>Subject</strong> line and a full <strong>Body</strong>. HTML formatting is supported in the body. The same variables above are available. Email is only sent if the customer provided an email address during booking.</p>
+
+    <!-- 6.6 Webhooks -->
+    <h3>🔗 Webhooks / Integrations</h3>
+    <p>Connect your booking system to external tools like Zapier, Make.com, or your own API using webhooks. A webhook sends data automatically when specific events happen in the system.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Webhooks Page</div>
+      <div class="desc">Shows webhook list with event type, URL, method, status toggle, and test button</div>
+    </div>
+
+    <h4>Creating a Webhook</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Name</td><td>Descriptive label (e.g., "Zapier — New Booking Alert")</td></tr>
+        <tr><td>Event Type</td><td>BOOKING_CREATED, BOOKING_UPDATED, BOOKING_MOVED, BOOKING_CANCELLED, BOOKING_COMPLETED, MAP_LOAD, etc.</td></tr>
+        <tr><td>URL</td><td>Your Zapier/Make.com/API endpoint URL</td></tr>
+        <tr><td>Method</td><td>POST (sends JSON body) or GET (appends params to URL)</td></tr>
+        <tr><td>Payload Template</td><td>JSON template with variables (e.g., <code>{reservation.customerName}</code>). Auto-populates for the selected event.</td></tr>
+        <tr><td>Custom Headers</td><td>Add any required authentication headers (e.g., API keys)</td></tr>
+        <tr><td>Active Toggle</td><td>Turn the webhook on/off without deleting it</td></tr>
+      </tbody>
+    </table>
+    <p>Click <strong>Test</strong> to send a sample payload to your endpoint and verify the integration is working.</p>
+  </div>
+
+  <!-- 7. ACTIVITIES MANAGEMENT -->
+  <div class="section" id="activities-mgmt">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div>
+        <div class="section-subtitle">Section 7</div>
+        <div class="section-title">Activities Management</div>
+      </div>
+    </div>
+
+    <p>The Activities Mgmt submenu (nested inside Settings) lets you configure the core catalog of services your business offers: <strong>Pricing Rules</strong>, <strong>Activities</strong>, and <strong>Categories</strong>.</p>
+
+    <!-- 7.1 Pricing -->
+    <h3>💰 Pricing Rules</h3>
+    <p>Pricing rules define how much a booking costs based on activity, duration, quantity, and time period. Rules are first defined globally here, then assigned to specific locations.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Pricing Rules List</div>
+      <div class="desc">Shows rule table with name, activity, duration, base price, deposit, date range, and active toggle</div>
+    </div>
+
+    <h4>Creating a Pricing Rule</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Name</td><td>Descriptive label (e.g., "Weekend Jet Ski 2hr Single")</td></tr>
+        <tr><td>Category</td><td>Service type this rule applies to</td></tr>
+        <tr><td>Activity</td><td>Specific activity filtered by category</td></tr>
+        <tr><td>Duration</td><td>Hours: 1, 2, 3, 4, 6, or 8</td></tr>
+        <tr><td>Rider Type</td><td>SINGLE, DOUBLE, or OTHER</td></tr>
+        <tr><td>Min / Max Units</td><td>Range of units this rule covers</td></tr>
+        <tr><td>Base Price</td><td>Starting price for the minimum units</td></tr>
+        <tr><td>Price Per Extra Unit</td><td>Additional cost per unit beyond the minimum. Set to 0 for flat price.</td></tr>
+        <tr><td>Fixed Deposit</td><td>Required deposit amount (optional)</td></tr>
+        <tr><td>Start / End Date</td><td>Temporary rules (e.g., holiday pricing) take priority over permanent rules when dates overlap</td></tr>
+        <tr><td>Active Toggle</td><td>Enable/disable without deleting</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box tip">
+      <span class="icon">💡</span>
+      <div class="text"><strong>Pricing Priority:</strong> Temporary rules (with Start/End dates) always override permanent rules when they overlap. Location-level price overrides replace the Base Price of any assigned rule for that specific location.</div>
+    </div>
+
+    <!-- 7.2 Activities -->
+    <h3>🎈 Activities</h3>
+    <p>Activities are the specific experiences or tours offered within each category (e.g., "Standard Jet Ski Tour", "Sunset Cruise", "ATV Beach Ride").</p>
+
+    <h4>Creating an Activity</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Name</td><td>Activity title shown in booking modal</td></tr>
+        <tr><td>Category</td><td>Which service type this belongs to</td></tr>
+        <tr><td>Description</td><td>Optional details about the experience</td></tr>
+        <tr><td>Active Toggle</td><td>Inactive activities won't appear in booking dropdowns</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 7.3 Categories -->
+    <h3>🗂️ Service Categories</h3>
+    <p>Beyond the three built-in categories (Jet Skis, ATV, Yachts), you can create <strong>custom categories</strong> for any other service type you offer.</p>
+
+    <h4>Creating a Custom Category</h4>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Name</td><td>Category title (e.g., "Parasailing", "Paddleboard")</td></tr>
+        <tr><td>Emoji</td><td>Select from the picker or type your own — shown throughout the UI</td></tr>
+        <tr><td>Description</td><td>Optional details</td></tr>
+        <tr><td>Active Toggle</td><td>Inactive categories are hidden from all dropdowns</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box info">
+      <span class="icon">ℹ️</span>
+      <div class="text"><strong>Category Hierarchy:</strong> Built-in categories (Jet Ski, ATV, Yacht) and custom categories are treated identically across the entire system — in bookings, pricing rules, activities, and locations.</div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <p><strong>JSRSF Booking Pro</strong> &nbsp;·&nbsp; Administrator Manual &nbsp;·&nbsp; Version 1.0</p>
+  <p style="margin-top:8px;">Powered by <strong>TecnoAi</strong> &nbsp;·&nbsp; JSRSF South Florida Systems</p>
+  <p style="margin-top:8px; font-size:11px;">For support contact TecnoAi</p>
+</div>
+
+</body>
+</html>

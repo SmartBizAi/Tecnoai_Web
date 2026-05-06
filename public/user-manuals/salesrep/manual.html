@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSRSF Booking Pro – Sales Rep User Manual</title>
+  <style>
+    :root {
+      --orange: #f97316;
+      --orange-dark: #ea580c;
+      --orange-light: #fff7ed;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-400: #94a3b8;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --emerald: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--slate-700);
+      background: #fff;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .cover {
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+      color: #fff;
+      padding: 80px 40px 60px;
+      text-align: center;
+    }
+    .cover .badge {
+      display: inline-block;
+      background: var(--emerald);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .cover h1 { font-size: 42px; font-weight: 900; margin-bottom: 12px; }
+    .cover h1 span { color: #6ee7b7; }
+    .cover p { font-size: 17px; color: #a7f3d0; max-width: 520px; margin: 0 auto 32px; }
+    .cover .meta { font-size: 12px; color: #6ee7b7; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .toc {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin: 48px 0;
+    }
+    .toc h2 { font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--emerald); margin-bottom: 20px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--slate-700); text-decoration: none; font-weight: 600; }
+    .toc a:hover { color: var(--emerald); }
+    .toc .sub { margin-top: 4px; margin-left: 16px; font-size: 13px; color: var(--slate-400); font-weight: 400; }
+
+    .section { padding: 56px 0; border-bottom: 1px solid var(--slate-100); }
+    .section:last-child { border-bottom: none; }
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    .section-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: #d1fae5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .section-title { font-size: 26px; font-weight: 900; color: var(--slate-800); }
+    .section-subtitle { font-size: 13px; color: var(--slate-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+
+    h3 { font-size: 18px; font-weight: 800; color: var(--slate-800); margin: 32px 0 12px; }
+    h4 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #065f46; margin: 24px 0 8px; }
+    p { margin-bottom: 14px; }
+
+    .screenshot {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      border: 2px dashed var(--slate-200);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .screenshot .icon { font-size: 32px; margin-bottom: 8px; }
+    .screenshot .label { font-size: 13px; font-weight: 700; color: var(--slate-600); }
+    .screenshot .desc { font-size: 12px; color: var(--slate-400); margin-top: 4px; }
+
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
+    .steps li {
+      counter-increment: step;
+      display: flex; gap: 14px;
+      margin-bottom: 14px; align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step);
+      min-width: 28px; height: 28px;
+      background: var(--emerald);
+      color: #fff; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 900;
+      flex-shrink: 0; margin-top: 2px;
+    }
+
+    .info-box {
+      border-radius: 12px; padding: 16px 20px; margin: 20px 0;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .info-box.tip { background: #f0fdf4; border-left: 4px solid #22c55e; }
+    .info-box.warning { background: #fefce8; border-left: 4px solid #eab308; }
+    .info-box.info { background: #eff6ff; border-left: 4px solid #3b82f6; }
+    .info-box.danger { background: #fef2f2; border-left: 4px solid #ef4444; }
+    .info-box .icon { font-size: 18px; flex-shrink: 0; }
+    .info-box .text { font-size: 14px; line-height: 1.6; }
+    .info-box strong { font-weight: 800; }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+    .feature-card {
+      background: var(--slate-50); border: 1px solid var(--slate-200);
+      border-radius: 12px; padding: 18px;
+    }
+    .feature-card .emoji { font-size: 24px; margin-bottom: 8px; }
+    .feature-card .title { font-size: 13px; font-weight: 800; color: var(--slate-800); margin-bottom: 4px; }
+    .feature-card .desc { font-size: 12px; color: var(--slate-400); line-height: 1.5; }
+
+    .field-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .field-table th { background: #064e3b; color: #fff; text-align: left; padding: 10px 14px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+    .field-table th:first-child { border-radius: 8px 0 0 0; }
+    .field-table th:last-child { border-radius: 0 8px 0 0; }
+    .field-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--slate-100); vertical-align: top; }
+    .field-table tr:last-child td { border-bottom: none; }
+    .field-table tr:hover td { background: #f0fdf4; }
+    .required { color: var(--red); font-weight: 900; font-size: 11px; }
+    .optional { color: var(--slate-400); font-weight: 700; font-size: 11px; }
+
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+    .badge.green { background: #dcfce7; color: #166534; }
+    .badge.yellow { background: #fef9c3; color: #854d0e; }
+    .badge.red { background: #fee2e2; color: #991b1b; }
+    .badge.blue { background: #dbeafe; color: #1e40af; }
+    .badge.gray { background: #f1f5f9; color: #475569; }
+
+    .clock-demo {
+      background: #064e3b;
+      border-radius: 16px;
+      padding: 24px;
+      color: #fff;
+      margin: 20px 0;
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+    }
+    .clock-demo .timer { font-size: 32px; font-weight: 900; font-variant-numeric: tabular-nums; color: #6ee7b7; }
+    .clock-demo .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #a7f3d0; }
+    .clock-demo .btn {
+      padding: 10px 20px; border-radius: 12px; font-size: 12px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.08em; border: none; cursor: pointer;
+    }
+    .clock-demo .btn.in { background: var(--emerald); color: #fff; }
+    .clock-demo .btn.out { background: var(--red); color: #fff; }
+
+    .footer {
+      background: #064e3b; color: #a7f3d0;
+      text-align: center; padding: 40px 24px; font-size: 13px; margin-top: 60px;
+    }
+    .footer strong { color: #6ee7b7; }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">Sales Rep Role</div>
+  <h1>JSRSF <span>Booking Pro</span></h1>
+  <h2 style="font-size:22px; font-weight:700; margin-bottom:16px; color:#d1fae5;">Sales Representative Manual</h2>
+  <p>Everything you need to create bookings, manage reservations, track your hours, and close more sales at the beach.</p>
+  <div class="meta">Version 1.0 &nbsp;·&nbsp; by <strong style="color:#6ee7b7">TecnoAi</strong> &nbsp;·&nbsp; JSRSF South Florida Systems</div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>📋 Table of Contents</h2>
+    <ol>
+      <li><a href="#login">Logging In &amp; Your Profile</a></li>
+      <li><a href="#clock">Clock In / Clock Out</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#new-booking">Creating a New Booking</a>
+        <div class="sub">Step-by-step walkthrough of the Fleet Order form</div>
+      </li>
+      <li><a href="#manage-bookings">Managing Existing Bookings</a>
+        <div class="sub">Filters, status updates, payments, messages</div>
+      </li>
+      <li><a href="#map">Map View</a></li>
+      <li><a href="#credits">Credits &amp; Balance</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. LOGIN -->
+  <div class="section" id="login">
+    <div class="section-header">
+      <div class="section-icon">🔐</div>
+      <div>
+        <div class="section-subtitle">Section 1</div>
+        <div class="section-title">Logging In</div>
+      </div>
+    </div>
+
+    <p>Open the app in your browser or from the home screen icon if you installed it as a PWA. Enter your <strong>work email</strong> and <strong>password</strong> provided by your admin, then tap <strong>Sign In</strong>.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Login Page</div>
+      <div class="desc">Shows the JSRSF logo, email/password fields, and Sign In button</div>
+    </div>
+
+    <div class="info-box tip">
+      <span class="icon">💡</span>
+      <div class="text"><strong>First time logging in?</strong> Your admin set a temporary password of <strong>pass123</strong>. You may be prompted to change it. Keep your new password safe — do not share it.</div>
+    </div>
+
+    <div class="info-box info">
+      <span class="icon">📱</span>
+      <div class="text"><strong>Install as an App:</strong> When you first open the site, you may see an <strong>"📲 Install"</strong> button at the top right. Tap it to add JSRSF Booking Pro to your phone's home screen for fast access — it works like a native app, even offline for certain features.</div>
+    </div>
+  </div>
+
+  <!-- 2. CLOCK IN/OUT -->
+  <div class="section" id="clock">
+    <div class="section-header">
+      <div class="section-icon">⏱️</div>
+      <div>
+        <div class="section-subtitle">Section 2</div>
+        <div class="section-title">Clock In / Clock Out</div>
+      </div>
+    </div>
+
+    <p>As a Sales Rep, you must clock in when you start your shift and clock out when you finish. This records your working hours for payroll calculation.</p>
+
+    <div class="clock-demo">
+      <div>
+        <div class="label">Currently Working</div>
+        <div class="timer">02:34:17</div>
+      </div>
+      <div>
+        <button class="btn in">▶ Clock In</button>
+        &nbsp;
+        <button class="btn out">⏹ Clock Out</button>
+      </div>
+    </div>
+
+    <h3>How to Clock In</h3>
+    <ul class="steps">
+      <li>Look for the <strong>▶ Clock In</strong> button in the <strong>top header bar</strong> (visible at the top of every page).</li>
+      <li>Tap it at the start of your shift. The button changes to a green timer showing your elapsed time.</li>
+    </ul>
+
+    <h3>How to Clock Out</h3>
+    <ul class="steps">
+      <li>When your shift ends, tap the <strong>⏹ Clock Out</strong> button in the header.</li>
+      <li>Your time entry is automatically saved and sent to your admin for review and payment.</li>
+    </ul>
+
+    <div class="info-box warning">
+      <span class="icon">⚠️</span>
+      <div class="text"><strong>Don't forget to clock out!</strong> If you forget, your entry shows as "In Progress" and your admin will need to manually correct the end time. Unclosed shifts can affect your pay calculation.</div>
+    </div>
+  </div>
+
+  <!-- 3. DASHBOARD -->
+  <div class="section" id="dashboard">
+    <div class="section-header">
+      <div class="section-icon">🏠</div>
+      <div>
+        <div class="section-subtitle">Section 3</div>
+        <div class="section-title">Dashboard</div>
+      </div>
+    </div>
+
+    <p>The Dashboard is your home screen. It gives you a quick snapshot of today's activity and your team's performance.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Dashboard for Sales Rep</div>
+      <div class="desc">Shows the 4 stat cards, port availability widget, activity log, and New Booking button</div>
+    </div>
+
+    <h3>What You See</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="emoji">💰</div>
+        <div class="title">Volume (This Month)</div>
+        <div class="desc">Total revenue for the current month. Click to open the detailed reports panel.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">📅</div>
+        <div class="title">Today's Reservations</div>
+        <div class="desc">How many bookings are scheduled for today across all locations.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">✅</div>
+        <div class="title">Confirmed</div>
+        <div class="desc">Total bookings currently in CONFIRMED status.</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">📍</div>
+        <div class="title">Port Availability</div>
+        <div class="desc">Shows active ports for today. An alert appears if any port is unavailable.</div>
+      </div>
+    </div>
+
+    <h3>Activity Log</h3>
+    <p>The bottom section shows the 10 most recently completed bookings — great for staying informed about what's happening across the fleet.</p>
+
+    <h3>New Booking Button</h3>
+    <p>The large orange <strong>+ New Booking</strong> button is your main tool. Click it whenever a customer wants to book a service. See the next section for the full step-by-step guide.</p>
+  </div>
+
+  <!-- 4. CREATING A BOOKING -->
+  <div class="section" id="new-booking">
+    <div class="section-header">
+      <div class="section-icon">➕</div>
+      <div>
+        <div class="section-subtitle">Section 4</div>
+        <div class="section-title">Creating a New Booking</div>
+      </div>
+    </div>
+
+    <p>Creating a booking is your most important daily task. Follow these steps every time a customer wants to reserve a service.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Fleet Order Modal — Category Selection</div>
+      <div class="desc">Shows the service category grid: Jet Ski, ATV, Yacht, and any custom categories</div>
+    </div>
+
+    <h3>Step 1 — Choose the Service Type</h3>
+    <p>A grid of service buttons appears. Tap the one the customer wants:</p>
+    <table class="field-table">
+      <thead><tr><th>Option</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>🚤 Jet Skis</td><td>Personal watercraft rentals — single or double rider options</td></tr>
+        <tr><td>🚜 ATV / Quad</td><td>All-terrain vehicle experiences on land</td></tr>
+        <tr><td>🛥️ Yachts</td><td>Yacht charters and boat experiences</td></tr>
+        <tr><td>Custom categories</td><td>Any additional services your company offers (e.g., Parasailing 🪂)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Step 2 — Build the Order</h3>
+    <p>This section lets you add one or more activities to the booking cart:</p>
+    <ul class="steps">
+      <li><strong>Activity:</strong> Select from the dropdown the specific tour or experience (filtered by category).</li>
+      <li><strong>Target Area:</strong> Type the customer's preferred area (e.g., "Miami Beach"). This is optional but helps find nearby ports.</li>
+      <li><strong>Port/Location:</strong> Select from the list of suggested nearby ports. The list shows the port name, address, and distance ordered by proximity.</li>
+      <li><strong>Quantity:</strong>
+        <ul style="margin-top:8px; padding-left:20px; font-size:14px;">
+          <li>For <strong>Jet Skis</strong>: Enter number of <strong>Single riders</strong> 👤 and/or <strong>Double riders</strong> 👥 separately.</li>
+          <li>For <strong>ATV / Yacht</strong>: Enter the total number of <strong>Units</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Duration:</strong> Select how long the activity lasts: 1 hour, 2 hours, 3 hours, 4 hours, 6 hours, or 8 hours.</li>
+      <li><strong>Price:</strong> The system automatically fills the price from your configured pricing rules. If no rule exists, a badge says <em>"No rule — enter manually"</em> — type the price in the field.</li>
+      <li>Click <strong>Add to Order</strong> to add this activity. The item appears in the cart below. You can add multiple activities for the same group.</li>
+    </ul>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Fleet Order — Activity Builder &amp; Cart</div>
+      <div class="desc">Shows the activity dropdown, port selector, quantity inputs, and the cart with added items</div>
+    </div>
+
+    <div class="info-box tip">
+      <span class="icon">💡</span>
+      <div class="text"><strong>Multi-Activity Orders:</strong> If a group wants Jet Skiing AND ATVs, add both! Each activity is a separate cart item with its own price. The system calculates the combined total automatically.</div>
+    </div>
+
+    <h3>Step 3 — Customer Information</h3>
+    <p>Every booking needs a name and phone number:</p>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Required</th><th>What to Enter</th></tr></thead>
+      <tbody>
+        <tr><td>Customer Name</td><td><span class="required">Required</span></td><td>Full name of the person booking (or group leader)</td></tr>
+        <tr><td>Phone Number</td><td><span class="required">Required</span></td><td>Select the country flag (+1 US, +52 MX, etc.) then enter the number</td></tr>
+        <tr><td>Email</td><td><span class="optional">Optional</span></td><td>Only needed if you want to send an email confirmation</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Step 4 — Date &amp; Time</h3>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>What to Enter</th></tr></thead>
+      <tbody>
+        <tr><td>Launch Date</td><td>Date of the reservation (today or future date)</td></tr>
+        <tr><td>Launch Time</td><td>The exact time the activity starts. Some activities have pre-set times to choose from.</td></tr>
+        <tr><td>Number of People</td><td>Total headcount in the group (e.g., if 3 people split a booking, enter 3)</td></tr>
+        <tr><td>Log Notes</td><td>Any special instructions: rider experience level, special requests, waiver status, etc.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Step 5 — Promo Code &amp; Referral</h3>
+    <p>If the customer has a <strong>promo code</strong>, enter it in the field and tap <strong>Apply</strong>. If valid, the discount is subtracted from the total automatically.</p>
+    <p>Select the <strong>Referral Source</strong> — how did the customer find you? This helps track marketing performance:</p>
+    <p>Instagram · TikTok · Google · Facebook · Friend/Referral · Flyer · Walk-in · Other</p>
+
+    <h3>Step 6 — Payment Method &amp; Amount</h3>
+    <p>Select how the customer is paying:</p>
+
+    <div class="feature-grid">
+      <div class="feature-card"><div class="emoji">💵</div><div class="title">Cash</div><div class="desc">Customer pays in person with cash</div></div>
+      <div class="feature-card"><div class="emoji">💳</div><div class="title">Card</div><div class="desc">Send a Stripe link or charge via phone</div></div>
+      <div class="feature-card"><div class="emoji">⚡</div><div class="title">Zelle</div><div class="desc">Customer sends via Zelle</div></div>
+      <div class="feature-card"><div class="emoji">📱</div><div class="title">Venmo</div><div class="desc">Customer sends via Venmo</div></div>
+      <div class="feature-card"><div class="emoji">💸</div><div class="title">CashApp</div><div class="desc">Customer sends via Cash App</div></div>
+      <div class="feature-card"><div class="emoji">•••</div><div class="title">Other</div><div class="desc">Any other payment method</div></div>
+    </div>
+
+    <h4>If Card is selected:</h4>
+    <ul class="steps">
+      <li><strong>Send Link</strong> — the system sends a Stripe payment link to the customer's phone/email.</li>
+      <li><strong>Charge (Phone)</strong> — you can process the card manually over the phone through Stripe.</li>
+    </ul>
+
+    <p>Fill in the payment amounts:</p>
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Total Amount</td><td>Tap <strong>"Use $X"</strong> to auto-fill from the cart total, or type a different amount</td></tr>
+        <tr><td>Tip</td><td>Optional — add if the customer wants to include a tip</td></tr>
+        <tr><td>Deposit</td><td>If only a partial payment was taken (e.g., deposit to hold the spot)</td></tr>
+        <tr><td>Payment Notes</td><td>Transaction ID, Zelle confirmation, or any payment reference</td></tr>
+      </tbody>
+    </table>
+
+    <p>The <strong>summary box</strong> at the bottom shows the full breakdown:</p>
+    <p>Subtotal → Promo Discount (if any) → Net Total → Tax (7%) → Deposit → <strong>Balance Due at Location</strong></p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Payment Section with Summary Box</div>
+      <div class="desc">Shows the payment method grid, amount fields, and the balance due summary box in orange</div>
+    </div>
+
+    <h3>Step 7 — Confirm the Order</h3>
+    <ul class="steps">
+      <li>Click <strong>Confirm Order</strong> (or <strong>Confirm &amp; Send Link</strong> if card payment was selected).</li>
+      <li>The booking is created and a success screen appears.</li>
+      <li>Choose an <strong>SMS template</strong> to send a confirmation text to the customer (recommended!).</li>
+      <li>Optionally choose an <strong>Email template</strong> as well.</li>
+      <li>Preview the message — the customer's name, date, time, and location are automatically inserted.</li>
+      <li>Click <strong>Send &amp; Finish</strong> to send and close the modal.</li>
+    </ul>
+
+    <div class="info-box tip">
+      <span class="icon">💡</span>
+      <div class="text"><strong>Save a Draft:</strong> If you get interrupted mid-booking, click <strong>Save Draft</strong> at the bottom. Your work is saved for 24 hours. Come back and click the draft dropdown at the top of the modal to restore it.</div>
+    </div>
+
+    <h3>Availability Check</h3>
+    <p>While filling out the booking form, the system automatically checks if the selected location has capacity for the chosen date and time. Look for:</p>
+    <ul>
+      <li>🟢 <strong>Green message</strong> — Location is available! Shows available unit count.</li>
+      <li>🔴 <strong>Red message</strong> — Location is fully booked or closed for that time slot.</li>
+    </ul>
+  </div>
+
+  <!-- 5. MANAGING BOOKINGS -->
+  <div class="section" id="manage-bookings">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div>
+        <div class="section-subtitle">Section 5</div>
+        <div class="section-title">Managing Existing Bookings</div>
+      </div>
+    </div>
+
+    <p>Go to the <strong>Bookings</strong> page in the left sidebar to see all reservations. From here you can find any booking, check its status, and take action on it.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Bookings Page — List View</div>
+      <div class="desc">Shows the filter bar at the top and the list of bookings with status badges and customer names</div>
+    </div>
+
+    <h3>Finding a Booking</h3>
+    <p>Use the <strong>filter bar</strong> at the top to narrow down the list:</p>
+    <table class="field-table">
+      <thead><tr><th>Filter</th><th>Use it when...</th></tr></thead>
+      <tbody>
+        <tr><td>← Today →</td><td>Navigate day-by-day to see bookings for a specific date</td></tr>
+        <tr><td>Customer search</td><td>Type the customer name or phone to find their booking instantly</td></tr>
+        <tr><td>Booking Ref</td><td>Customer has a reference number and you need to pull it up fast</td></tr>
+        <tr><td>Status filter</td><td>Show only CONFIRMED, PENDING, COMPLETED, etc.</td></tr>
+        <tr><td>Location</td><td>View bookings for a specific port only</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Booking Status Meanings</h3>
+    <table class="field-table">
+      <thead><tr><th>Status</th><th>What It Means</th><th>What You Should Do</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge green">CONFIRMED</span></td><td>Reservation confirmed, all good</td><td>Nothing — just make sure they show up</td></tr>
+        <tr><td><span class="badge yellow">PENDING</span></td><td>Awaiting confirmation or payment</td><td>Follow up with the customer</td></tr>
+        <tr><td><span class="badge blue">COMPLETED</span></td><td>Activity was done successfully</td><td>No action needed</td></tr>
+        <tr><td><span class="badge red">CANCELLED</span></td><td>Booking was cancelled</td><td>Check notes for reason</td></tr>
+        <tr><td><span class="badge gray">DRAFT</span></td><td>Not fully submitted yet</td><td>Complete and confirm the booking</td></tr>
+      </tbody>
+    </table>
+
+    <h3>What You Can Do on a Booking</h3>
+    <p>Click any booking row to open its full detail view. As a Sales Rep, you can:</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="emoji">💳</div>
+        <div class="title">Send Payment Link</div>
+        <div class="desc">Send a Stripe link to the customer for the remaining balance</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">📊</div>
+        <div class="title">Update Status</div>
+        <div class="desc">Mark as Confirmed, Completed, or Cancelled</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">✏️</div>
+        <div class="title">Edit Details</div>
+        <div class="desc">Correct quantities, notes, or customer info if needed</div>
+      </div>
+      <div class="feature-card">
+        <div class="emoji">💬</div>
+        <div class="title">Resend Message</div>
+        <div class="desc">Send another SMS or email confirmation to the customer</div>
+      </div>
+    </div>
+
+    <div class="info-box danger">
+      <span class="icon">🚫</span>
+      <div class="text"><strong>Note:</strong> Sales Reps cannot delete bookings or access admin-only features like Staff Management, Pricing, or Leads CRM. If you need to remove a booking, contact your admin.</div>
+    </div>
+
+    <h3>Calendar View</h3>
+    <p>Toggle to <strong>Calendar View</strong> using the button near the top of the Bookings page. This shows a full month grid with dots on days that have bookings — useful for spotting busy vs. slow days at a glance.</p>
+  </div>
+
+  <!-- 6. MAP -->
+  <div class="section" id="map">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div>
+        <div class="section-subtitle">Section 6</div>
+        <div class="section-title">Map View</div>
+      </div>
+    </div>
+
+    <p>The Map View shows all active fleet locations pinned on an interactive map. Use it to help customers find the nearest port or to look up a location's details before booking.</p>
+
+    <div class="screenshot">
+      <div class="icon">📸</div>
+      <div class="label">Screenshot: Map View</div>
+      <div class="desc">Shows Google Map with colored pins for each port and the location detail panel</div>
+    </div>
+
+    <h3>How to Use the Map</h3>
+    <ul class="steps">
+      <li>Use the <strong>category filter</strong> on the left to show only Jet Ski, ATV, or Yacht locations.</li>
+      <li>Enter a <strong>customer address + radius</strong> (in miles) to see which ports are within reach — the list sorts from closest to farthest.</li>
+      <li>Click a <strong>map pin</strong> to see the location's name, address, category, and status.</li>
+      <li>Click <strong>Book Now</strong> on any location card to open the booking modal with that location pre-filled — saves time!</li>
+    </ul>
+
+    <div class="info-box warning">
+      <span class="icon">⚠️</span>
+      <div class="text"><strong>Credit Usage:</strong> Each map load and address search uses 1 credit. Avoid refreshing the map unnecessarily.</div>
+    </div>
+  </div>
+
+  <!-- 7. CREDITS -->
+  <div class="section" id="credits">
+    <div class="section-header">
+      <div class="section-icon">💳</div>
+      <div>
+        <div class="section-subtitle">Section 7</div>
+        <div class="section-title">Credits</div>
+      </div>
+    </div>
+
+    <p>Credits power the platform. As a Sales Rep, you can view the current credit balance but cannot purchase credits (that's handled by your admin).</p>
+
+    <h3>Seeing the Balance</h3>
+    <p>Look at the <strong>left sidebar at the bottom</strong> — there's a credit balance pill. The color tells you the status:</p>
+    <table class="field-table">
+      <thead><tr><th>Color</th><th>Balance</th><th>Action Needed</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#166534; font-weight:800;">🟢 Gray/Green</td><td>50+ credits</td><td>All good — keep working</td></tr>
+        <tr><td style="color:#9a3412; font-weight:800;">🟠 Orange</td><td>10–50 credits</td><td>Alert your admin — low balance</td></tr>
+        <tr><td style="color:#991b1b; font-weight:800;">🔴 Red (blinking)</td><td>Below 10</td><td>Urgent — notify admin immediately, bookings may fail</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Credit Cost Per Action</h3>
+    <table class="field-table">
+      <thead><tr><th>What You Do</th><th>Credits Used</th></tr></thead>
+      <tbody>
+        <tr><td>Create a new booking</td><td>1 credit</td></tr>
+        <tr><td>Edit or move a booking</td><td>1 credit</td></tr>
+        <tr><td>Use the map or address search</td><td>1 credit per search</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <p><strong>JSRSF Booking Pro</strong> &nbsp;·&nbsp; Sales Representative Manual &nbsp;·&nbsp; Version 1.0</p>
+  <p style="margin-top:8px;">Powered by <strong>TecnoAi</strong> &nbsp;·&nbsp; JSRSF South Florida Systems</p>
+  <p style="margin-top:8px; font-size:11px;">For support contact TecnoAi</p>
+</div>
+
+</body>
+</html>
