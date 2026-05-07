@@ -26,6 +26,7 @@ export default function Header() {
         { href: '/user-manuals', label: t('nav.manuals') },
         { href: '/faq', label: t('nav.faq') },
         { href: '/contact', label: t('nav.contact') },
+        { href: '/portal', label: t('nav.portal') },
     ];
 
     return (
@@ -84,6 +85,12 @@ export default function Header() {
                         </div>
 
                         <Link
+                            href="/portal"
+                            className="hidden lg:inline-flex items-center justify-center px-3 py-1.5 xl:px-4 xl:py-2 border border-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-all text-xs whitespace-nowrap"
+                        >
+                            {t('nav.portal')}
+                        </Link>
+                        <Link
                             href="/chaos-challenge"
                             className="hidden lg:inline-flex items-center justify-center px-3 py-1.5 xl:px-4 xl:py-2 border border-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-all text-xs whitespace-nowrap"
                         >
@@ -138,6 +145,9 @@ export default function Header() {
                         </Link>
                         <Link href="/chaos-challenge" onClick={() => setMenuOpen(false)} className="flex items-center justify-center gap-1.5 px-4 py-2.5 border border-gray-200 text-gray-700 font-medium rounded-xl text-sm">
                             {t('nav.cta.chaos')}
+                        </Link>
+                        <Link href="/portal" onClick={() => setMenuOpen(false)} className="flex items-center justify-center gap-1.5 px-4 py-2.5 border border-gray-200 text-gray-700 font-medium rounded-xl text-sm">
+                            {t('nav.portal')}
                         </Link>
                     </div>
                 </div>

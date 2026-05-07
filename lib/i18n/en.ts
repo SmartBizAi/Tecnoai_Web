@@ -649,6 +649,9 @@ const en = {
     'blog.ctaBtn': 'Explore TecnoAI',
     'blog.tags': 'Tags',
     'blog.relatedTopic': 'Topic',
+
+    // Portal
+    'nav.portal': 'Client Login',
 } as const;
 
 export type TranslationKey = keyof typeof en;

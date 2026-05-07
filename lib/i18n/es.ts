@@ -649,6 +649,9 @@ const es = {
     'blog.ctaBtn': 'Explorar TecnoAI',
     'blog.tags': 'Etiquetas',
     'blog.relatedTopic': 'Tema',
+
+    // Portal
+    'nav.portal': 'Portal Clientes',
 } as const;
 
 export default es;
